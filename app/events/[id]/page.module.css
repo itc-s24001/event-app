@@ -1,0 +1,74 @@
+.main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+  font-family: "Segoe UI", sans-serif;
+  padding: 2rem;
+}
+
+/* イベントカード */
+.card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem 3rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+/* タイトル */
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0070f3;
+  margin-bottom: 1rem;
+}
+
+/* イベント情報（日時・場所） */
+.info {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+/* 区切り線 */
+.line {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1.5rem 0;
+}
+
+/* 説明文 */
+.desc {
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* 戻るリンク */
+.backLink {
+  display: inline-block;
+  color: #0070f3;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: #0056b3;
+}
+
+/* イベントが見つからないとき */
+.notFound {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #888;
+}
