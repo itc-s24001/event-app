@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Pagination from "./components/Pagination";
+import SearchBar from "./components/SearchBar";
 import styles from "./page.module.css";
 
 const events = [
@@ -49,16 +53,23 @@ const events = [
 
 const PER_PAGE = 4;
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams?: { page?: string };
-}) {
-  const page = Number(searchParams?.page) || 1;
-  const totalPages = Math.ceil(events.length / PER_PAGE);
+export default function Home() {
+  const [page, setPage] = useState(1);
+  const [keyword, setKeyword] = useState("");
 
+  // 検索フィルタ
+  const filteredEvents = events.filter((event) => {
+    const search = keyword.toLowerCase();
+    return (
+      event.title.toLowerCase().includes(search) ||
+      event.place.toLowerCase().includes(search) ||
+      event.description.toLowerCase().includes(search)
+    );
+  });
+
+  const totalPages = Math.ceil(filteredEvents.length / PER_PAGE);
   const startIndex = (page - 1) * PER_PAGE;
-  const currentEvents = events.slice(startIndex, startIndex + PER_PAGE);
+  const currentEvents = filteredEvents.slice(startIndex, startIndex + PER_PAGE);
 
   return (
     <main className={styles.main}>
@@ -69,25 +80,45 @@ export default function Home({
         </p>
       </section>
 
+      {/* 🔍 検索バー */}
+      <SearchBar
+        onSearch={(value) => {
+          setKeyword(value);
+          setPage(1); // 新しい検索では1ページ目に戻す
+        }}
+      />
+
+      {/* イベント一覧 */}
       <div className={styles.list}>
-        {currentEvents.map((event) => (
-          <Link
-            key={event.id}
-            href={`/events/${event.id}`}
-            className={styles.item}
-          >
-            <div className={styles.info}>
-              <h2>{event.title}</h2>
-              <p className={styles.meta}>
-                📅 {event.date}　📍 {event.place}
-              </p>
-              <p className={styles.desc}>{event.description}</p>
-            </div>
-          </Link>
-        ))}
+        {currentEvents.length > 0 ? (
+          currentEvents.map((event) => (
+            <Link
+              key={event.id}
+              href={`/events/${event.id}`}
+              className={styles.item}
+            >
+              <div className={styles.info}>
+                <h2>{event.title}</h2>
+                <p className={styles.meta}>
+                  📅 {event.date}　📍 {event.place}
+                </p>
+                <p className={styles.desc}>{event.description}</p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p className={styles.noResult}>
+            該当するイベントが見つかりませんでした。
+          </p>
+        )}
       </div>
 
-      <Pagination currentPage={page} totalPages={totalPages} />
+      {/* ページネーション */}
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={(p) => setPage(p)}
+      />
     </main>
   );
 }

@@ -98,3 +98,33 @@
   color: #fff;
   border-color: #0070f3;
 }
+
+/* 検索ボックス */
+.searchBox {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.searchInput {
+  width: 80%;
+  max-width: 400px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}
+
+/* 検索結果なし表示 */
+.noResult {
+  text-align: center;
+  color: #666;
+  margin-top: 2rem;
+}
