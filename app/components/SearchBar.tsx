@@ -15,16 +15,11 @@ export default function SearchBar() {
     const v = e.target.value;
     setKeyword(v);
 
-    // 現在の URL パラメータを引き継ぐ（重要！）
     const params = new URLSearchParams(searchParams.toString());
 
-    if (v.trim() === "") {
-      params.delete("q");
-    } else {
-      params.set("q", v);
-    }
+    if (v.trim() === "") params.delete("q");
+    else params.set("q", v);
 
-    // 検索されたら1ページ目に戻す
     params.set("page", "1");
 
     router.push(`/?${params.toString()}`);

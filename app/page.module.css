@@ -1,130 +1,132 @@
-/* 全体 */
+/* --- 基本レイアウト --- */
 .main {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 2rem;
+  background: #f3f4f6;
+  padding: 40px 20px;
   text-align: center;
-  font-family: "Segoe UI", sans-serif;
-}
-
-/* ヒーローセクション */
-.hero {
-  margin-bottom: 3rem;
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #333;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 25px;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  color: #666;
+/* --- 検索フォーム --- */
+.searchForm {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
 }
 
-/* イベントリスト */
+.searchInput {
+  width: 260px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background: white;
+}
+
+.searchButton {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  background: #ff7b54;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.searchButton:hover {
+  opacity: 0.9;
+}
+
+/* --- 一覧リスト --- */
 .list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
   align-items: center;
+  gap: 35px;
 }
 
-/* イベント1件（縦カード） */
+/* --- イベントカード --- */
 .item {
-  background-color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  width: 90%;
+  max-width: 720px;
+  padding: 0;
+  border-radius: 18px;
   text-decoration: none;
-  color: inherit;
-  transition: all 0.25s ease;
-  width: 100%;
-  max-width: 700px;
-  text-align: left;
+  color: black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* イベント情報 */
-.info h2 {
-  font-size: 1.5rem;
-  color: #0070f3;
-  margin-bottom: 0.5rem;
+/* --- 画像 --- */
+.image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
 }
 
-.meta {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 0.6rem;
+/* --- 情報部分 --- */
+.info {
+  padding: 20px;
+  text-align: left;
 }
 
-.desc {
-  font-size: 1rem;
+.eventTitle {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 15px;
   color: #444;
-  line-height: 1.5;
+  margin-bottom: 5px;
 }
 
-/* ページネーション */
+/* --- ページネーション --- */
 .pagination {
+  margin-top: 40px;
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
+  gap: 8px;
 }
 
 .pageButton {
-  padding: 0.5rem 1rem;
+  display: inline-block;
+  padding: 8px 14px;
+  background: #e5e7eb;
   border-radius: 8px;
-  background: #fff;
-  border: 1px solid #ccc;
-  color: #0070f3;
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  color: black;
+  font-size: 15px;
+  transition: background 0.2s ease;
 }
 
 .pageButton:hover {
-  background: #0070f3;
-  color: #fff;
+  background: #d1d5db;
 }
 
 .active {
-  background: #0070f3;
-  color: #fff;
-  border-color: #0070f3;
+  background: #ff7b54 !important;
+  color: white !important;
 }
 
-/* 検索ボックス */
-.searchBox {
-  display: flex;
-  justify-content: center;
-  margin: 1.5rem 0;
-}
-
-.searchInput {
-  width: 80%;
-  max-width: 400px;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  outline: none;
-  transition: all 0.2s ease;
-}
-
-.searchInput:focus {
-  border-color: #0070f3;
-  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
-}
-
-/* 検索結果なし表示 */
-.noResult {
-  text-align: center;
-  color: #666;
-  margin-top: 2rem;
+.noData {
+  color: #555;
+  margin-top: 20px;
+  font-size: 16px;
 }

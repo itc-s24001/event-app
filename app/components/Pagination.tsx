@@ -3,20 +3,21 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "../page.module.css";
 
-type Props = {
+export default function Pagination({
+  currentPage,
+  totalPages,
+}: {
   currentPage: number;
   totalPages: number;
-};
-
-export default function Pagination({ currentPage, totalPages }: Props) {
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-  const move = (page: number) => {
+  const move = (p: number) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set("page", String(page));
+    params.set("page", String(p));
     router.push(`/?${params.toString()}`);
   };
 
