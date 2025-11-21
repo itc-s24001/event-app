@@ -38,6 +38,7 @@ export default async function EventDetail({
               weekday: "short",
               hour: "2-digit",
               minute: "2-digit",
+              timeZone: "Asia/Tokyo",
             })}
           </span>
           <span>📍 {event.place}</span>
