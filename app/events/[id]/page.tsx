@@ -1,5 +1,6 @@
 import { client } from "@/libs/microcms";
 import styles from "./page.module.css";
+import Image from "next/image";
 
 type Event = {
   id: string;
@@ -28,7 +29,17 @@ export default async function EventDetail({
         <h1 className={styles.title}>{event.title}</h1>
 
         <div className={styles.info}>
-          <span>📅 {event.date}</span>
+          <span>
+            📅{" "}
+            {new Date(event.date).toLocaleString("ja-JP", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              weekday: "short",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
           <span>📍 {event.place}</span>
         </div>
 
@@ -37,11 +48,14 @@ export default async function EventDetail({
         <p className={styles.desc}>{event.description}</p>
 
         {event.image && (
-          <img
+          <Image
             src={event.image.url}
             alt={event.title}
+            width={600}
+            height={400}
             style={{
               width: "100%",
+              height: "auto",
               borderRadius: "12px",
               marginTop: "1.5rem",
             }}

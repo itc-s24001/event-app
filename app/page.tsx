@@ -84,7 +84,18 @@ export default async function Home({
                 <div className={styles.info}>
                   <h2>{event.title}</h2>
                   <p className={styles.meta}>
-                    📅 {event.date} ｜ 📍 {event.place}
+                    <span>
+                      📅{" "}
+                      {new Date(event.date).toLocaleString("ja-JP", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        weekday: "short",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>{" "}
+                    ｜ 📍 {event.place}
                   </p>
                 </div>
               </Link>
