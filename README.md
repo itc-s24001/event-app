@@ -1,39 +1,67 @@
-11/18　microCMSの設定
+# イベント管理アプリ
 
+Next.js と microCMS を使用したイベント一覧・詳細表示アプリケーションです。
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 📋 機能
 
-## Getting Started
+- イベント一覧表示（ページネーション対応）
+- イベント検索機能
+- イベント詳細ページ
+- レスポンシブデザイン
 
-First, run the development server:
+## 🛠️ 技術スタック
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **フレームワーク**: Next.js 14.1.4 (App Router)
+- **言語**: TypeScript
+- **CMS**: microCMS
+- **スタイリング**: CSS Modules
+
+## 📁 プロジェクト構造
+
+```
+event-app/
+├── app/
+│   ├── components/
+│   │   ├── Pagination.tsx      # ページネーションコンポーネント
+│   │   └── SearchBar.tsx       # 検索バーコンポーネント
+│   ├── events/
+│   │   └── [id]/
+│   │       ├── page.tsx        # イベント詳細ページ
+│   │       └── page.module.css
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx                # トップページ（イベント一覧）
+│   └── page.module.css
+├── libs/
+│   └── microcms.ts             # microCMS クライアント設定
+├── public/
+├── .env.local                  # 環境変数（要作成）
+├── next.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### イベント一覧ページ (`app/page.tsx`)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- microCMS からイベントデータを取得
+- 1 ページあたり 4 件表示
+- キーワード検索機能
+- ページネーション
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### イベント詳細ページ (`app/events/[id]/page.tsx`)
 
-## Learn More
+- 個別イベントの詳細情報を表示
+- 日時、場所、説明、画像を表示
+- 一覧ページへの戻るリンク
 
-To learn more about Next.js, take a look at the following resources:
+### 検索機能 (`app/components/SearchBar.tsx`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- リアルタイム検索
+- URL クエリパラメータと連動
+- 検索時は自動的に 1 ページ目に戻る
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### ページネーション (`app/components/Pagination.tsx`)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- ページ番号ボタンで簡単に移動
+- 現在のページをハイライト表示
+- 検索条件を保持したまま移動可能
